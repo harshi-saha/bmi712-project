@@ -8,70 +8,43 @@
 - It is recommended to use HPC or GPU resources to run 224x224 resolution models due to the required computational resources
 - It is also especially recommended to do so for the DinoV2 scripts and some directions are provided below
 
-**Notes for running DinoV2 scripts:**
+## Folder Structure Overview
 
-Option A: Google Colab (Recommended)
+Experiments using **ResNet-50**, **EfficientNet**, and **DINOv2** on both **224×224** and **28×28** resolution images are located in the main directory.  
+The experiments specifically for **ResNet-50** are stored in the `medmnist_resnet_nick` folder.  
 
-No local setup needed. Open
-`code/medmnsit_dinov2_224_shupeng.ipynb` in Colab:
+The `eda` folder contains our initial exploratory data analysis (EDA) for **DermaMNIST** and other datasets that may be used later to evaluate **generalizability**.
 
-1. Go to [colab.research.google.com](https://colab.research.google.com) →
-   **File → Upload notebook** → select the `.ipynb` file.
-2. Enable GPU: **Runtime → Change runtime type → T4 GPU**.
-3. Run all cells (**Runtime → Run all**).
-   - Cell 1 installs all dependencies automatically.
-   - DermaMNIST 224×224 is downloaded on first run and features are
-     cached to `/content/features/`; subsequent runs skip extraction.
-4. After training completes, Cell 8 packages all plots and checkpoints
-   into `dermamnist_224_results.zip` and downloads it automatically.
+## How to Run the Code
+
+All scripts except those related to **DINOv2** can be run on **Google Colab**.  
+For DINOv2, the RAM requirement is much higher, so Colab may sometimes crash. The following instructions describe how to run the DINOv2 experiments.
+
+### Option A — Google Colab (Recommended)
+
+No local setup is needed. Open  
+`code/medmnist_dinov2_224_shupeng.ipynb` in Colab.
+
+1. Go to **Colab** → **File → Upload notebook** → select the `.ipynb` file.
+2. Enable GPU: **Runtime → Change runtime type → T4 GPU**.  
+   Note: extra RAM may also be required.
+3. Run all cells with **Runtime → Run all**.
+   - Cell 1 installs all required dependencies automatically.
+   - The **DermaMNIST 224×224** dataset is downloaded during the first run.
+   - Extracted features are cached in `/content/features/`, so later runs can skip feature extraction.
+4. After training finishes, **Cell 8** packages all plots and checkpoints into `dermamnist_224_results.zip` and downloads it automatically.
 
 ---
 
-Option B: Local Setup
+### Option B — Local or Cluster Setup
 
-Prerequisites
+#### Prerequisites
+
 - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or Anaconda
-- CUDA-capable GPU (optional; CPU works but training is slower)
+- A CUDA-capable GPU (optional; CPU also works, but training will be slower)
 
-1. Create the conda environment
+#### 1. Create the conda environment
 
 ```bash
 conda env create -f code/environment.yaml
 conda activate dinov2-dermamnist
-```
-
-> **CPU-only machines:** edit `environment.yaml` before creating —
-> replace the `pytorch-cuda=12.1` line with `cpuonly`.
-
-2. Register the kernel with Jupyter
-
-```bash
-python -m ipykernel install --user --name dinov2-dermamnist
-```
-
-3. Launch the notebook
-
-```bash
-jupyter notebook code/medmnsit_dinov2_224_shupeng.ipynb
-```
-
-Select kernel **dinov2-dermamnist** if not chosen automatically.
-
-4. First-run feature extraction
-
-DINOv2 weights (~330 MB) are downloaded from HuggingFace on first run.
-Pre-extracted features are cached under `features/` and reused on
-subsequent runs. Extraction time: ~10 min on T4 GPU, ~40 min on CPU.
-
-5. Outputs
-
-| File | Description |
-|------|-------------|
-| `features/cls/` | DINOv2 CLS token features (float32) |
-| `features/patch/` | DINOv2 patch token features (float16, 768×16×16) |
-| `checkpoints/` | Best model weights for each head (`.pt`) |
-| `224_training_curves.png` | Loss & val-accuracy curves (all 5 heads) |
-| `224_method_acc_auc.png` | Method-level Accuracy / Macro AUC / Weighted AUC |
-| `224_perclass_auc_heatmap.png` | Per-class AUC heatmap |
-| `224_perclass_recall_heatmap.png` | Per-class Recall heatmap |
-| `224_perclass_grouped.png` | Grouped bar: AUC + Recall by class |
