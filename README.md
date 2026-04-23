@@ -14,7 +14,7 @@
 ## Folder Structure Overview
 
 Experiments using **ResNet-50**, **EfficientNet**, and **DINOv2** on both **224×224** and **28×28** resolution images are located in the main directory.  
-The experiments specifically for **ResNet-50** are stored in the `medmnist_resnet_nick` folder.
+The experiments specifically for **ResNet-18** are stored in the `medmnist_resnet_nick` folder.
 
 The `eda` folder contains our initial exploratory data analysis (EDA) for **DermaMNIST** and other datasets that may be used later to evaluate **generalizability**.
 
@@ -26,7 +26,7 @@ For **DINOv2**, the RAM requirement is much higher, so Colab may sometimes crash
 ### Option A — Google Colab (Recommended)
 
 No local setup is needed. Open  
-`code/medmnist_dinov2_224_shupeng.ipynb` in Colab.
+`medmnist_dinov2_224_shupeng.ipynb` in Colab.
 
 1. Go to **Colab** → **File → Upload notebook** → select the `.ipynb` file.
 2. Enable GPU: **Runtime → Change runtime type → T4 GPU**.  
@@ -49,7 +49,7 @@ No local setup is needed. Open
 #### 1. Create the conda environment
 
 ```bash
-conda env create -f code/environment.yaml
+conda env create -f environment.yaml
 conda activate dinov2-dermamnist
 ```
 
@@ -61,7 +61,7 @@ python -m ipykernel install --user --name dinov2-dermamnist
 ```
 3. Launch the notebook
 ```
-jupyter notebook code/medmnist_dinov2_224_shupeng.ipynb
+jupyter notebook medmnist_dinov2_224_shupeng.ipynb
 ```
 
 If it is not selected automatically, choose the kernel dinov2-dermamnist.
