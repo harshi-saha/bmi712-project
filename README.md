@@ -1,4 +1,11 @@
-### Option A — Google Colab (Recommended)
+
+**Data Information:**
+
+**Scipt Information:**
+
+**Notes for running DinoV2 scripts:**
+
+Option A: Google Colab (Recommended)
 
 No local setup needed. Open
 `code/medmnsit_dinov2_224_shupeng.ipynb` in Colab:
@@ -15,13 +22,13 @@ No local setup needed. Open
 
 ---
 
-### Option B — Local Setup
+Option B: Local Setup
 
-#### Prerequisites
+Prerequisites
 - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or Anaconda
 - CUDA-capable GPU (optional; CPU works but training is slower)
 
-#### 1. Create the conda environment
+1. Create the conda environment
 
 ```bash
 conda env create -f code/environment.yaml
@@ -31,13 +38,13 @@ conda activate dinov2-dermamnist
 > **CPU-only machines:** edit `environment.yaml` before creating —
 > replace the `pytorch-cuda=12.1` line with `cpuonly`.
 
-#### 2. Register the kernel with Jupyter
+2. Register the kernel with Jupyter
 
 ```bash
 python -m ipykernel install --user --name dinov2-dermamnist
 ```
 
-#### 3. Launch the notebook
+3. Launch the notebook
 
 ```bash
 jupyter notebook code/medmnsit_dinov2_224_shupeng.ipynb
@@ -45,13 +52,13 @@ jupyter notebook code/medmnsit_dinov2_224_shupeng.ipynb
 
 Select kernel **dinov2-dermamnist** if not chosen automatically.
 
-#### 4. First-run feature extraction
+4. First-run feature extraction
 
 DINOv2 weights (~330 MB) are downloaded from HuggingFace on first run.
 Pre-extracted features are cached under `features/` and reused on
 subsequent runs. Extraction time: ~10 min on T4 GPU, ~40 min on CPU.
 
-#### 5. Outputs
+5. Outputs
 
 | File | Description |
 |------|-------------|
