@@ -1,0 +1,26 @@
+name: dinov2-dermamnist
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  # PyTorch (CUDA 12.1 — change to cpuonly if no GPU)
+  - pytorch>=2.2.0
+  - torchvision>=0.17.0
+  - pytorch-cuda=12.1
+  # Scientific computing
+  - numpy>=1.26
+  - scikit-learn>=1.4
+  # Visualization
+  - matplotlib>=3.8
+  - seaborn>=0.13
+  # Jupyter
+  - jupyter
+  - ipykernel
+  - pip:
+      - transformers>=4.40       # DINOv2 via HuggingFace
+      - medmnist>=3.0            # DermaMNIST dataset
+      - timm>=0.9                # optional, used by transformers internally
