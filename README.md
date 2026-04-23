@@ -1,7 +1,12 @@
 
 **Data Information:**
+- The training dataset used in these scripts is DermaMNIST sourced from [MedMNIST](https://medmnist.com/)
+- The external validation dataset that is dermoscopy skin lesion evaluation sourced from [MedIMeta](https://www.woerner.eu/projects/medimeta/)
 
 **Scipt Information:**
+- Each of these scripts is self contained as can be downloaded and run end to end independently
+- It is recommended to use HPC or GPU resources to run 224x224 resolution models due to the required computational resources
+- It is also especially recommended to do so for the DinoV2 scripts and some directions are provided below
 
 **Notes for running DinoV2 scripts:**
 
