@@ -74,6 +74,7 @@ Pre-extracted features are cached under features/ and reused in later runs.
 Approximate extraction time:
 ~10 minutes on a T4 GPU
 ~40 minutes on CPU
+
 5. Outputs
 The main output files and folders are listed below:
 
