@@ -75,12 +75,15 @@ Approximate extraction time:
 ~10 minutes on a T4 GPU
 ~40 minutes on CPU
 5. Outputs
-File / Folder	Description
-features/cls/	DINOv2 CLS token features (float32)
-features/patch/	DINOv2 patch token features (float16, 768×16×16)
-checkpoints/	Best model weights for each classification head (.pt)
-224_training_curves.png	Loss and validation accuracy curves for all 5 heads
-224_method_acc_auc.png	Method-level Accuracy, Macro AUC, and Weighted AUC
-224_perclass_auc_heatmap.png	Per-class AUC heatmap
-224_perclass_recall_heatmap.png	Per-class Recall heatmap
-224_perclass_grouped.png	Grouped bar plot of per-class AUC and Recall
+The main output files and folders are listed below:
+
+| File / Folder | Description |
+|---------------|-------------|
+| `features/cls/` | Cached DINOv2 CLS token features in `float32` format |
+| `features/patch/` | Cached DINOv2 patch token features in `float16` format with shape `768×16×16` |
+| `checkpoints/` | Best saved model weights for each classification head (`.pt`) |
+| `224_training_curves.png` | Training loss and validation accuracy curves for all five heads |
+| `224_method_acc_auc.png` | Comparison of method-level Accuracy, Macro AUC, and Weighted AUC |
+| `224_perclass_auc_heatmap.png` | Heatmap of per-class AUC scores |
+| `224_perclass_recall_heatmap.png` | Heatmap of per-class Recall scores |
+| `224_perclass_grouped.png` | Grouped bar chart showing per-class AUC and Recall |
