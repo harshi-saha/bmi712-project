@@ -51,13 +51,18 @@ No local setup is needed. Open
 ```bash
 conda env create -f code/environment.yaml
 conda activate dinov2-dermamnist
+```
 
 For CPU-only machines: edit environment.yaml before creating the environment and replace pytorch-cuda=12.1 with cpuonly.
 
 2. Register the kernel with Jupyter
+```
 python -m ipykernel install --user --name dinov2-dermamnist
+```
 3. Launch the notebook
+```
 jupyter notebook code/medmnist_dinov2_224_shupeng.ipynb
+```
 
 If it is not selected automatically, choose the kernel dinov2-dermamnist.
 
