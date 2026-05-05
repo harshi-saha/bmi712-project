@@ -8,6 +8,8 @@ import torch.optim as optim
 from collections import Counter
 import pandas as pd
 from torchvision.models.resnet import ResNet18_Weights, ResNet50_Weights
+from sklearn.metrics import roc_auc_score
+from medimeta import MedIMeta
 
 from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.image import show_cam_on_image
@@ -172,6 +174,39 @@ def compute_auc(model, loader, split, size, device=device):
     metrics = evaluator.evaluate(y_score)
 
     return metrics
+
+# AI Usage: AI generated function based on the above compute_auc function
+def compute_auc_multiclass(model, loader, device=device, average="macro"):
+    """
+    Computes multi-class ROC AUC using one-vs-rest scheme.
+    average: "macro", "weighted", or None (see sklearn.roc_auc_score docs)
+    """
+    model.eval()
+    y_true = []
+    y_score = []
+
+    with torch.no_grad():
+        for images, labels in loader:
+            images = images.to(device)
+            labels = labels.squeeze().long().to(device)
+
+            outputs = model(images)                  # (B, C)
+            probs = torch.softmax(outputs, dim=1)    # class probabilities
+
+            y_true.append(labels.cpu())
+            y_score.append(probs.cpu())
+
+    y_true = torch.cat(y_true).numpy()      # shape: (N,)
+    y_score = torch.cat(y_score).numpy()    # shape: (N, C)
+
+    # multi_class="ovr" is typical, "ovo" also available
+    auc = roc_auc_score(
+        y_true, 
+        y_score, 
+        multi_class="ovr", 
+        average=average
+    )
+    return auc
 
 # AI Usage: asked ChatGPT how to incorperate the learning rate into this function
 def train_model(model, train_loader, val_loader, epochs=5, lr=1e-3, device=device, criterion=nn.CrossEntropyLoss()):
@@ -403,3 +438,19 @@ def run_gradcam_grid(model, dataset, indices, target_layer=None):
     cbar.set_label("Attention intensity (Grad-CAM)", rotation=90, labelpad=12)
 
     plt.show()
+
+# AI Usage: asked AI how to apply transforms to MedIMeta data; used the code it gave me to help
+# write this
+class TransformedMedIMeta:
+    def __init__(self, path, dataset, task, transform=None):
+        self.base_data = MedIMeta(path, dataset, task)
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.base_data)
+    
+    def __getitem__(self, key):
+        image, label = self.base_data[key]
+        if self.transform is not None:
+            image = self.transform(image)
+        return image, label
