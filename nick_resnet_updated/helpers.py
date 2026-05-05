@@ -441,16 +441,32 @@ def run_gradcam_grid(model, dataset, indices, target_layer=None):
 
 # AI Usage: asked AI how to apply transforms to MedIMeta data; used the code it gave me to help
 # write this
+# AI Usage: Used AI to diagnose issue with label mismatch and to generate code to account for it
+
+medimeta_to_derma_idx = {
+    0: 4,  # Melanoma
+    1: 5,  # Melanocytic nevus
+    2: 1,  # Basal cell carcinoma
+    3: 0,  # Actinic keratosis / Bowen’s disease
+    4: 2,  # Benign keratosis
+    5: 3,  # Dermatofibroma
+    6: 6,  # Vascular lesion
+}
+
 class TransformedMedIMeta:
-    def __init__(self, path, dataset, task, transform=None):
+    def __init__(self, path, dataset, task, transform=None, label_map=medimeta_to_derma_idx):
         self.base_data = MedIMeta(path, dataset, task)
         self.transform = transform
+        self.label_map = label_map
 
     def __len__(self):
         return len(self.base_data)
     
     def __getitem__(self, key):
         image, label = self.base_data[key]
+        label = int(label)
+        if self.label_map is not None:
+            label = self.label_map[label]
         if self.transform is not None:
             image = self.transform(image)
-        return image, label
+        return image, torch.tensor(label, dtype=torch.long) 
