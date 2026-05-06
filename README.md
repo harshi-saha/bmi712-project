@@ -23,7 +23,7 @@ The `eda` folder contains our initial exploratory data analysis (EDA) for **Derm
 
 All scripts including those related to **DINOv2** can be run on **Google Colab**. For **DINOv2**, the RAM requirement is much higher, so Colab may sometimes crash. The following instructions describe how to run the DINOv2 experiments.
 
-### Option A — Google Colab (Recommended)
+### Option A: Google Colab (Recommended)
 
 No local setup is needed. Open  
 `medmnist_dinov2_224_shupeng.ipynb` in Colab.
@@ -39,7 +39,7 @@ No local setup is needed. Open
 
 ---
 
-### Option B — Local or Cluster Setup
+### Option B: Local or Cluster Setup
 
 #### Prerequisites
 
