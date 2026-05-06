@@ -13,10 +13,11 @@
 
 ## Folder Structure Overview
 
-Experiments using **ResNet-50**, **ResNet-18**, **EfficientNet**, and **DINOv2** on both **224×224** and **28×28** resolution images are located in the main directory.  
-The experiments specifically for **ResNet-18** and **ResNet-50** on **64x64**  are stored in the `medmnist_resnet_nick` folder.
+Experiments using **ResNet-50**, **ResNet-18**, **EfficientNet**, and **DINOv2** on both **224×224** and **28×28** resolution images are located under folders in the main directory. 
+- The experiments specifically for **ResNet-18** and **ResNet-50** on **28x28** and **224x224**  are stored in the `harshi_updated` folder.
+- The experiments specifically for **ResNet-18** and **ResNet-50** on **64x64**  are stored in the `medmnist_resnet_nick` folder.
 
-The `eda` folder contains our initial exploratory data analysis (EDA) for **DermaMNIST** and other datasets that may be used later to evaluate **generalizability**.
+The `eda` folder contains our initial exploratory data analysis (EDA) for **DermaMNIST** and **MedIMeta** used for training and external validation respectively. 
 
 ## How to Run the Code
 
