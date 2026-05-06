@@ -21,7 +21,7 @@ The `eda` folder contains our initial exploratory data analysis (EDA) for **Derm
 
 ## How to Run the Code
 
-All scripts except those related to **DINOv2** can be run on **Google Colab**.  
+All scripts including those related to **DINOv2** can be run on **Google Colab**.  
 For **DINOv2**, the RAM requirement is much higher, so Colab may sometimes crash. The following instructions describe how to run the DINOv2 experiments.
 
 ### Option A — Google Colab (Recommended)
