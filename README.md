@@ -21,14 +21,16 @@ Experiments using **ResNet-50**, **ResNet-18**, **EfficientNet**, and **DINOv2**
 
 The `eda` folder contains our initial exploratory data analysis (EDA) for **DermaMNIST** and **MedIMeta** used for training and external validation respectively. 
 
-## How to Run the Code
+## How to Run the Code (DinoV2)
 
-All scripts including those related to **DINOv2** can be run on **Google Colab**. For **DINOv2**, the RAM requirement is much higher, so Colab may sometimes crash. The following instructions describe how to run the DINOv2 experiments.
+All scripts except those related to **DINOv2** can be run on **Google Colab**.  
+For **DINOv2**, the RAM requirement is much higher, so Colab may sometimes crash without a pro. The following instructions describe how to run the DINOv2 experiments. Here we choose colab_dinov2_28_noweight.ipynb as an example.
 
-### Option A: Google Colab (Recommended)
+
+### Option A — Google Colab (Recommended)
 
 No local setup is needed. Open  
-`medmnist_dinov2_224_shupeng.ipynb` in Colab.
+`dinov2_updated/colab_dinov2_28_noweight.ipynb` in Colab.
 
 1. Go to **Colab** → **File → Upload notebook** → select the `.ipynb` file.
 2. Enable GPU: **Runtime → Change runtime type → T4 GPU**.  
@@ -41,7 +43,7 @@ No local setup is needed. Open
 
 ---
 
-### Option B: Local or Cluster Setup
+### Option B — Local or Cluster Setup
 
 #### Prerequisites
 
@@ -89,4 +91,4 @@ The main output files and folders are listed below:
 | `224_method_acc_auc.png` | Comparison of method-level Accuracy, Macro AUC, and Weighted AUC |
 | `224_perclass_auc_heatmap.png` | Heatmap of per-class AUC scores |
 | `224_perclass_recall_heatmap.png` | Heatmap of per-class Recall scores |
-| `224_perclass_grouped.png` | Grouped bar chart showing per-class AUC and Recall |
+| `224_perclass_grouped.png` | Group
