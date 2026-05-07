@@ -14,7 +14,7 @@
 ## Folder Structure Overview
 
 Experiments using **ResNet-50**, **ResNet-18**, **EfficientNet**, and **DINOv2** on both **224×224** and **28×28** resolution images are located under folders in the main directory. 
-- The experiments specifically for **ResNet-18** and **ResNet-50** on **28x28** and **224x224**  are stored in the `harshi_updated` folder.
+- The experiments specifically for **ResNet-18** and **ResNet-50** on **28x28** and **224x224**  are stored in the `resnet_28_224_experiments` folder.
 - The experiments specifically for **ResNet-18** and **ResNet-50** on **64x64** and **128x128** are stored in the `resnet_64_128_experiments` folder. (Please note there is another `README.md` in this folder detailing the files present and how to run the code.)
 - The experiments specifically for **EfficientNet_B0** and **EfficientNet_B1** on **28x28** and **224x224**  are stored in the `effnet_updated` folder.
 - The experiments specifically for **DINOv2** related models on **28x28** and **224x224**  are stored in the `dinov2_updated` folder.
